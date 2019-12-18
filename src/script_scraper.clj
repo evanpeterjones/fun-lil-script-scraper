@@ -22,11 +22,9 @@
           (for [line (-> movie-url
                          parse-html
                          (html/select [:body :pre])
-                         second
-                         rest
-                         second
-                         second)]
-            (if (string? line) 
+                         first
+                         :content)]
+            (if (string? line)
               (-> line
                   reduce-white-space
                   remove-punctuation) 
